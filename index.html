@@ -9,6 +9,44 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
+    --color-bg:#151A15;
+    --color-surface:#1D2420;
+    --color-text:#ECE7D8;
+    --color-text-muted:#A6A290;
+    --color-line:#333A32;
+    --color-accent:#FF5C52;
+    --color-accent-deep:#FF8478;
+    --color-accent-2:#DDAE58;
+    --color-accent-2-soft:#3A331F;
+    --color-blue:#5B9CE8;
+    --band-bg:#081B31;
+    --band-bg-soft:#123457;
+    --band-text:#ECE7D8;
+    --band-text-muted:#9BB6D6;
+    --shadow-card:0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="dark"]){
+      --color-bg:#F2F0E3;
+      --color-surface:#FFFFFF;
+      --color-text:#211F16;
+      --color-text-muted:#5B5646;
+      --color-line:#DEDACA;
+      --color-accent:#D81F2C;
+      --color-accent-deep:#A8121D;
+      --color-accent-2:#C6902E;
+      --color-accent-2-soft:#F0DFB8;
+      --color-blue:#155FBF;
+      --band-bg:#0C3A6B;
+      --band-bg-soft:#154C86;
+      --band-text:#F2F0E3;
+      --band-text-muted:#AFC6E2;
+      --shadow-card:0 1px 2px rgba(33,31,22,0.06), 0 8px 24px -12px rgba(33,31,22,0.18);
+      color-scheme: light;
+    }
+  }
+  :root[data-theme="light"]{
     --color-bg:#F2F0E3;
     --color-surface:#FFFFFF;
     --color-text:#211F16;
@@ -25,26 +63,6 @@
     --band-text-muted:#AFC6E2;
     --shadow-card:0 1px 2px rgba(33,31,22,0.06), 0 8px 24px -12px rgba(33,31,22,0.18);
     color-scheme: light;
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --color-bg:#151A15;
-      --color-surface:#1D2420;
-      --color-text:#ECE7D8;
-      --color-text-muted:#A6A290;
-      --color-line:#333A32;
-      --color-accent:#FF5C52;
-      --color-accent-deep:#FF8478;
-      --color-accent-2:#DDAE58;
-      --color-accent-2-soft:#3A331F;
-      --color-blue:#5B9CE8;
-      --band-bg:#081B31;
-      --band-bg-soft:#123457;
-      --band-text:#ECE7D8;
-      --band-text-muted:#9BB6D6;
-      --shadow-card:0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
-      color-scheme: dark;
-    }
   }
   :root[data-theme="dark"]{
     --color-bg:#151A15;
@@ -72,23 +90,33 @@
   body{
     margin:0;
     background:
-      radial-gradient(circle at 1px 1px, rgba(0,0,0,0.035) 1px, transparent 0) 0 0/15px 15px,
+      radial-gradient(ellipse 900px 550px at 12% -8%, rgba(255,92,82,0.16), transparent 60%),
+      radial-gradient(ellipse 800px 520px at 100% 18%, rgba(91,156,232,0.14), transparent 55%),
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0) 0 0/15px 15px,
       var(--color-bg);
+    background-attachment:fixed, fixed, local;
     color:var(--color-text);
     font-family:'Work Sans', system-ui, -apple-system, sans-serif;
     font-size:16px;
     line-height:1.55;
     -webkit-font-smoothing:antialiased;
   }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]) body{
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="dark"]) body{
       background:
-        radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0) 0 0/15px 15px,
+        radial-gradient(circle at 1px 1px, rgba(0,0,0,0.035) 1px, transparent 0) 0 0/15px 15px,
         var(--color-bg);
     }
   }
+  :root[data-theme="light"] body{
+    background:
+      radial-gradient(circle at 1px 1px, rgba(0,0,0,0.035) 1px, transparent 0) 0 0/15px 15px,
+      var(--color-bg);
+  }
   :root[data-theme="dark"] body{
     background:
+      radial-gradient(ellipse 900px 550px at 12% -8%, rgba(255,92,82,0.16), transparent 60%),
+      radial-gradient(ellipse 800px 520px at 100% 18%, rgba(91,156,232,0.14), transparent 55%),
       radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0) 0 0/15px 15px,
       var(--color-bg);
   }
