@@ -26,26 +26,6 @@
     --shadow-card:0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
     color-scheme: dark;
   }
-  @media (prefers-color-scheme: light){
-    :root:not([data-theme="dark"]){
-      --color-bg:#F2F0E3;
-      --color-surface:#FFFFFF;
-      --color-text:#211F16;
-      --color-text-muted:#5B5646;
-      --color-line:#DEDACA;
-      --color-accent:#D81F2C;
-      --color-accent-deep:#A8121D;
-      --color-accent-2:#C6902E;
-      --color-accent-2-soft:#F0DFB8;
-      --color-blue:#155FBF;
-      --band-bg:#0C3A6B;
-      --band-bg-soft:#154C86;
-      --band-text:#F2F0E3;
-      --band-text-muted:#AFC6E2;
-      --shadow-card:0 1px 2px rgba(33,31,22,0.06), 0 8px 24px -12px rgba(33,31,22,0.18);
-      color-scheme: light;
-    }
-  }
   :root[data-theme="light"]{
     --color-bg:#F2F0E3;
     --color-surface:#FFFFFF;
@@ -100,13 +80,6 @@
     font-size:16px;
     line-height:1.55;
     -webkit-font-smoothing:antialiased;
-  }
-  @media (prefers-color-scheme: light){
-    :root:not([data-theme="dark"]) body{
-      background:
-        radial-gradient(circle at 1px 1px, rgba(0,0,0,0.035) 1px, transparent 0) 0 0/15px 15px,
-        var(--color-bg);
-    }
   }
   :root[data-theme="light"] body{
     background:
