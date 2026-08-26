@@ -71,13 +71,30 @@
 
   body{
     margin:0;
-    background:var(--color-bg);
+    background:
+      radial-gradient(circle at 1px 1px, rgba(0,0,0,0.035) 1px, transparent 0) 0 0/15px 15px,
+      var(--color-bg);
     color:var(--color-text);
     font-family:'Work Sans', system-ui, -apple-system, sans-serif;
     font-size:16px;
     line-height:1.55;
     -webkit-font-smoothing:antialiased;
   }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) body{
+      background:
+        radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0) 0 0/15px 15px,
+        var(--color-bg);
+    }
+  }
+  :root[data-theme="dark"] body{
+    background:
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0) 0 0/15px 15px,
+      var(--color-bg);
+  }
+
+  .icon{ width:22px; height:22px; display:block; }
+  .icon-sm{ width:16px; height:16px; display:block; }
   h1,h2,h3,h4{
     font-family:'Fraunces', Georgia, serif;
     font-weight:600;
@@ -184,8 +201,10 @@
   .crate-chip{
     background:var(--color-surface); border:1px solid var(--color-line); border-radius:10px;
     padding:8px 12px; box-shadow:var(--shadow-card); font-size:12px; display:flex; align-items:center; gap:6px;
-    font-weight:600;
+    font-weight:600; color:var(--color-accent-deep);
   }
+  .crate-chip .icon{ width:15px; height:15px; }
+  .crate-chip span{ color:var(--color-text); }
 
   /* ---------- section shells ---------- */
   section{ padding:84px 0; }
@@ -213,7 +232,8 @@
   .product-badge-row{ display:flex; justify-content:space-between; align-items:flex-start; }
   .product-icon{
     width:52px; height:52px; border-radius:10px; background:var(--color-accent-2-soft);
-    display:flex; align-items:center; justify-content:center; font-size:22px;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--color-accent-deep);
   }
   .badge{
     font-family:'IBM Plex Mono', monospace; font-size:10.5px; font-weight:600; letter-spacing:0.03em;
@@ -225,6 +245,8 @@
   .product-foot{ display:flex; align-items:baseline; justify-content:space-between; margin-top:auto; padding-top:10px; border-top:1px dashed var(--color-line); }
   .price{ font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:17px; }
   .price-old{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--color-text-muted); text-decoration:line-through; margin-right:6px; }
+  .product-card{ transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+  .product-card:hover{ transform:translateY(-4px); border-color:var(--color-accent); box-shadow:0 4px 8px rgba(33,31,22,0.08), 0 16px 32px -14px rgba(33,31,22,0.28); }
 
   /* ---------- membership ---------- */
   .member-grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
@@ -254,8 +276,12 @@
     border:1px solid var(--color-line); border-radius:14px; padding:26px; background:var(--color-surface);
     transition:border-color .2s ease, transform .2s ease;
   }
-  .service-card:hover{ border-color:var(--color-accent); transform:translateY(-3px); }
-  .service-icon{ font-size:26px; margin-bottom:16px; display:block; }
+  .service-card:hover{ border-color:var(--color-accent); transform:translateY(-3px); box-shadow:0 4px 8px rgba(33,31,22,0.08), 0 16px 32px -14px rgba(33,31,22,0.28); }
+  .service-icon-tile{
+    width:52px; height:52px; border-radius:10px; background:var(--color-accent-2-soft);
+    display:flex; align-items:center; justify-content:center; color:var(--color-accent-deep);
+    margin-bottom:18px;
+  }
   .service-card h4{ font-size:17px; font-family:'Fraunces', serif; font-weight:600; margin-bottom:8px; }
   .service-card p{ font-size:14px; color:var(--color-text-muted); }
 
@@ -300,7 +326,9 @@
     border:1px solid var(--color-line); border-radius:14px; padding:22px; background:var(--color-surface);
     display:flex; flex-direction:column; gap:12px;
     min-width:270px; max-width:270px; flex-shrink:0; scroll-snap-align:start;
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   }
+  .review-card:hover{ transform:translateY(-4px); border-color:var(--color-accent); box-shadow:0 4px 8px rgba(33,31,22,0.08), 0 16px 32px -14px rgba(33,31,22,0.28); }
   .review-top{ display:flex; justify-content:space-between; align-items:flex-start; }
   .reviewer{ display:flex; align-items:center; gap:10px; }
   .reviewer-avatar{
@@ -372,6 +400,28 @@
       <text x="106" y="60" font-family="'Work Sans', sans-serif" font-weight="800" font-style="italic" font-size="45" letter-spacing="-0.5" fill="var(--color-accent)">KONSUM</text>
       <text x="106" y="98" font-family="'Work Sans', sans-serif" font-weight="800" font-size="29" letter-spacing="1" fill="var(--color-blue)">LEIPZIG</text>
     </symbol>
+
+    <g id="icon-defs">
+      <symbol id="icon-cheese" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18h18L12 4 3 18Z"></path><circle cx="10" cy="14" r="1"></circle><circle cx="14.2" cy="15.4" r="1"></circle><circle cx="12" cy="11" r="1"></circle></symbol>
+      <symbol id="icon-sausage" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15c0-2.5 2-4.5 4.5-4.5S13 12.5 13 15s-2 4.5-4.5 4.5S4 17.5 4 15Z"></path><path d="M11 9c0-2.5 2-4.5 4.5-4.5S20 6.5 20 9s-2 4.5-4.5 4.5S11 11.5 11 9Z"></path></symbol>
+      <symbol id="icon-bread" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V11c0-4 3.5-7 8-7s8 3 8 7v9H4Z"></path><path d="M8 20v-6M12 20v-7M16 20v-6"></path></symbol>
+      <symbol id="icon-potato" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13c-.5-3 2-6 5-6.5 2-3 6-2.5 7 .5 3 .5 4.5 4 3 6.5-1 3-4 5-8 5s-6.5-2.5-7-5.5Z"></path><circle cx="9" cy="12" r=".6" fill="currentColor" stroke="none"></circle><circle cx="14" cy="14" r=".6" fill="currentColor" stroke="none"></circle></symbol>
+      <symbol id="icon-honey" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8v3l1 1v13a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V7l1-1V3Z"></path><path d="M7 11h10M7 15h10"></path></symbol>
+      <symbol id="icon-coffee" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h11v6a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V9Z"></path><path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H16"></path><path d="M8 6c0-1 1-1 1-2M12 6c0-1 1-1 1-2"></path></symbol>
+      <symbol id="icon-milk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1.5 3H7.5L9 3Z"></path><path d="M7.5 6h9v13a1 1 0 0 1-1 1h-7a1 1 0 0 1-1-1V6Z"></path></symbol>
+      <symbol id="icon-beer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2h4v3l1.5 2v13a1.5 1.5 0 0 1-1.5 1.5h-4A1.5 1.5 0 0 1 8.5 20V7L10 5V2Z"></path><path d="M8.5 11h7"></path></symbol>
+      <symbol id="icon-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3z"></path><path d="M14 10h4l3 3v3h-7z"></path><circle cx="7" cy="18" r="1.6"></circle><circle cx="17.5" cy="18" r="1.6"></circle></symbol>
+      <symbol id="icon-app" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"></rect><path d="M12 17.5c-2-1.3-3.5-2.6-3.5-4.2 0-1.1.9-2 2-2 .6 0 1.1.3 1.5.8.4-.5.9-.8 1.5-.8 1.1 0 2 .9 2 2 0 1.6-1.5 2.9-3.5 4.2Z"></path></symbol>
+      <symbol id="icon-recycle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a8 8 0 1 1-6.9 4"></path><path d="M5 5v3h3"></path></symbol>
+      <symbol id="icon-croissant" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16c1-6 6-11 12-11-2 2-3 5-2 8 1 3-1 6-4 6-2 0-3-1-3-3"></path></symbol>
+      <symbol id="icon-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-2-1.5-5-2-8-1v13c3-1 6-.5 8 1 2-1.5 5-2 8-1V5c-3-1-6-.5-8 1Z"></path><path d="M12 6v13"></path></symbol>
+      <symbol id="icon-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="16" height="11" rx="1"></rect><path d="M4 13h16"></path><path d="M12 9v11"></path><path d="M9 9c-1.5 0-2.5-1-2.5-2.2S7.5 4.5 9 5.5C10 6.2 11 7.5 12 9c1-1.5 2-2.8 3-3.5 1.5-1 3 .1 3 2.3S16.5 9 15 9"></path></symbol>
+      <symbol id="icon-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12Z"></path><circle cx="12" cy="9" r="2.5"></circle></symbol>
+      <symbol id="icon-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4C10 4 4 10 4 18c8 0 14-6 14-14Z"></path><path d="M8 16 18 6"></path></symbol>
+      <symbol id="icon-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="16.2" cy="7.8" r="1" fill="currentColor" stroke="none"></circle></symbol>
+      <symbol id="icon-youtube" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="3"></rect><path d="M10.5 9.5v5l4.5-2.5-4.5-2.5Z" fill="currentColor" stroke="none"></path></symbol>
+      <symbol id="icon-facebook" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M13.5 21v-7h2.35l.35-2.7h-2.7V9.4c0-.78.22-1.3 1.33-1.3H16V5.3c-.3-.04-1.3-.13-2.5-.13-2.35 0-3.96 1.44-3.96 4.08v2.05H7v2.7h2.54V21h3.96Z"></path></symbol>
+    </g>
   </defs>
 </svg>
 
@@ -385,7 +435,7 @@
       <a href="mailto:mein@konsum-leipzig.de">mein@konsum-leipzig.de</a>
     </div>
     <div class="utility-right">
-      <span>📍 Filiale Altenburg</span>
+      <span style="display:inline-flex; align-items:center; gap:6px;"><svg class="icon-sm" viewBox="0 0 24 24"><use href="#icon-pin"></use></svg> Filiale Altenburg</span>
       <a href="#mitgliedschaft">Mitglied werden</a>
     </div>
   </div>
@@ -404,6 +454,7 @@
       <a href="#gemeinschaft">Gemeinschaft stärken</a>
     </div>
     <div class="nav-cta">
+      <a href="#produkte" class="btn btn-outline" style="display:none">Filiale finden</a>
       <a href="#mitgliedschaft" class="btn btn-primary">Mitglied werden</a>
       <button class="menu-toggle" aria-label="Menü öffnen">☰</button>
     </div>
@@ -460,9 +511,9 @@
         <use href="#logo-mark" x="70" y="60" width="278" height="104"></use>
       </svg>
       <div class="hero-crates">
-        <div class="crate-chip">🥖 Bäckerei</div>
-        <div class="crate-chip">🥕 Regional</div>
-        <div class="crate-chip">🧀 Bio</div>
+        <div class="crate-chip"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-croissant"></use></svg><span>Bäckerei</span></div>
+        <div class="crate-chip"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-leaf"></use></svg><span>Regional</span></div>
+        <div class="crate-chip"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-cheese"></use></svg><span>Bio</span></div>
       </div>
     </div>
   </div>
@@ -487,42 +538,42 @@
 
     <div class="product-grid">
       <article class="product-card reveal">
-        <div class="product-badge-row"><div class="product-icon">🧀</div><span class="badge gold">Mitgliederpreis</span></div>
+        <div class="product-badge-row"><div class="product-icon"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-cheese"></use></svg></div><span class="badge gold">Mitgliederpreis</span></div>
         <div><div class="product-name">Altenburger Ziegenkäse, mild</div><div class="product-origin">Ziegenhof Rositz · 150 g</div></div>
         <div class="product-foot"><span class="price-old mono">3,49 €</span><span class="price">3,09 €</span></div>
       </article>
       <article class="product-card reveal">
-        <div class="product-badge-row"><div class="product-icon">🌭</div><span class="badge">Regional</span></div>
+        <div class="product-badge-row"><div class="product-icon"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-sausage"></use></svg></div><span class="badge">Regional</span></div>
         <div><div class="product-name">Thüringer Rostbratwurst, g.g.A.</div><div class="product-origin">Fleischerei Pleißenland · 4 Stück</div></div>
         <div class="product-foot"><span class="price">4,79 €</span></div>
       </article>
       <article class="product-card reveal">
-        <div class="product-badge-row"><div class="product-icon">🍞</div><span class="badge">Täglich frisch</span></div>
+        <div class="product-badge-row"><div class="product-icon"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-bread"></use></svg></div><span class="badge">Täglich frisch</span></div>
         <div><div class="product-name">Skatstadt-Landbrot, Sauerteig</div><div class="product-origin">Konsum-Bäckerei Altenburg · 1 kg</div></div>
         <div class="product-foot"><span class="price">3,15 €</span></div>
       </article>
       <article class="product-card reveal">
-        <div class="product-badge-row"><div class="product-icon">🥔</div><span class="badge gold">Bio</span></div>
+        <div class="product-badge-row"><div class="product-icon"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-potato"></use></svg></div><span class="badge gold">Bio</span></div>
         <div><div class="product-name">Altenburger Land-Kartoffeln</div><div class="product-origin">Agrargenossenschaft Nobitz · 2,5 kg</div></div>
         <div class="product-foot"><span class="price">3,89 €</span></div>
       </article>
       <article class="product-card reveal">
-        <div class="product-badge-row"><div class="product-icon">🍯</div><span class="badge">Regional</span></div>
+        <div class="product-badge-row"><div class="product-icon"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-honey"></use></svg></div><span class="badge">Regional</span></div>
         <div><div class="product-name">Pleißental-Honig, cremig</div><div class="product-origin">Imkerei Gerstenberg · 500 g</div></div>
         <div class="product-foot"><span class="price">6,49 €</span></div>
       </article>
       <article class="product-card reveal">
-        <div class="product-badge-row"><div class="product-icon">☕</div><span class="badge gold">Mitgliederpreis</span></div>
+        <div class="product-badge-row"><div class="product-icon"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-coffee"></use></svg></div><span class="badge gold">Mitgliederpreis</span></div>
         <div><div class="product-name">Altenburger Kaffeerösterei, ganze Bohne</div><div class="product-origin">Rösterei am Brühl · 500 g</div></div>
         <div class="product-foot"><span class="price-old mono">9,99 €</span><span class="price">8,79 €</span></div>
       </article>
       <article class="product-card reveal">
-        <div class="product-badge-row"><div class="product-icon">🥛</div><span class="badge">Regional</span></div>
+        <div class="product-badge-row"><div class="product-icon"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-milk"></use></svg></div><span class="badge">Regional</span></div>
         <div><div class="product-name">Weidemilch, 3,8 % Fett</div><div class="product-origin">Molkerei Altenburger Land · 1 l</div></div>
         <div class="product-foot"><span class="price">1,19 €</span></div>
       </article>
       <article class="product-card reveal">
-        <div class="product-badge-row"><div class="product-icon">🍺</div><span class="badge">Regional</span></div>
+        <div class="product-badge-row"><div class="product-icon"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-beer"></use></svg></div><span class="badge">Regional</span></div>
         <div><div class="product-name">Altenburger Landbier, Pils</div><div class="product-origin">Brauerei Löbichau · 6 × 0,33 l</div></div>
         <div class="product-foot"><span class="price">5,49 €</span></div>
       </article>
@@ -580,12 +631,12 @@
       <div><span class="eyebrow">Was wir bieten</span><h2>Services rund um Ihren Einkauf</h2></div>
     </div>
     <div class="service-grid">
-      <div class="service-card reveal"><span class="service-icon">🚚</span><h4>Lieferservice</h4><p>Wocheneinkauf online bestellen und bis vor die Haustür in Altenburg liefern lassen.</p></div>
-      <div class="service-card reveal"><span class="service-icon">📱</span><h4>Mitglieder-App</h4><p>Digitale Mitgliedskarte, aktuelle Angebote und Dividendenübersicht auf einen Blick.</p></div>
-      <div class="service-card reveal"><span class="service-icon">♻️</span><h4>Pfandautomat</h4><p>Mehrweg- und Einwegpfand direkt am Eingang der Filiale zurückgeben.</p></div>
-      <div class="service-card reveal"><span class="service-icon">🥐</span><h4>Bäckerei &amp; Frühstück</h4><p>Frisches Gebäck ab 6:30 Uhr, dazu Kaffee aus der Altenburger Rösterei.</p></div>
-      <div class="service-card reveal"><span class="service-icon">📖</span><h4>Rezeptwelt</h4><p>Saisonale Rezepte mit Zutaten, die Sie direkt im Regal wiederfinden.</p></div>
-      <div class="service-card reveal"><span class="service-icon">🎁</span><h4>Sammelaktionen</h4><p>Punkte sammeln bei jedem Einkauf und gegen Prämien für Familie und Verein eintauschen.</p></div>
+      <div class="service-card reveal"><div class="service-icon-tile"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-truck"></use></svg></div><h4>Lieferservice</h4><p>Wocheneinkauf online bestellen und bis vor die Haustür in Altenburg liefern lassen.</p></div>
+      <div class="service-card reveal"><div class="service-icon-tile"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-app"></use></svg></div><h4>Mitglieder-App</h4><p>Digitale Mitgliedskarte, aktuelle Angebote und Dividendenübersicht auf einen Blick.</p></div>
+      <div class="service-card reveal"><div class="service-icon-tile"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-recycle"></use></svg></div><h4>Pfandautomat</h4><p>Mehrweg- und Einwegpfand direkt am Eingang der Filiale zurückgeben.</p></div>
+      <div class="service-card reveal"><div class="service-icon-tile"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-croissant"></use></svg></div><h4>Bäckerei &amp; Frühstück</h4><p>Frisches Gebäck ab 6:30 Uhr, dazu Kaffee aus der Altenburger Rösterei.</p></div>
+      <div class="service-card reveal"><div class="service-icon-tile"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-book"></use></svg></div><h4>Rezeptwelt</h4><p>Saisonale Rezepte mit Zutaten, die Sie direkt im Regal wiederfinden.</p></div>
+      <div class="service-card reveal"><div class="service-icon-tile"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-gift"></use></svg></div><h4>Sammelaktionen</h4><p>Punkte sammeln bei jedem Einkauf und gegen Prämien für Familie und Verein eintauschen.</p></div>
     </div>
   </div>
 </section>
@@ -772,9 +823,9 @@
         <div class="footer-contact-line">✉ <a href="mailto:mein@konsum-leipzig.de">mein@konsum-leipzig.de</a></div>
         <div class="footer-contact-line" style="margin-top:6px;">Konsum Leipzig eG<br>Filiale Altenburg · Skatstadt</div>
         <div class="social-row">
-          <a href="#" class="social-btn" aria-label="Facebook">f</a>
-          <a href="#" class="social-btn" aria-label="Instagram">◎</a>
-          <a href="#" class="social-btn" aria-label="YouTube">▶</a>
+          <a href="#" class="social-btn" aria-label="Facebook"><svg class="icon-sm" viewBox="0 0 24 24"><use href="#icon-facebook"></use></svg></a>
+          <a href="#" class="social-btn" aria-label="Instagram"><svg class="icon-sm" viewBox="0 0 24 24"><use href="#icon-instagram"></use></svg></a>
+          <a href="#" class="social-btn" aria-label="YouTube"><svg class="icon-sm" viewBox="0 0 24 24"><use href="#icon-youtube"></use></svg></a>
         </div>
       </div>
       <div class="footer-col">
