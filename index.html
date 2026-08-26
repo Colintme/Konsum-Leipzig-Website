@@ -401,8 +401,8 @@
 
   /* ---------- responsive ---------- */
   @media (max-width: 980px){
-    .hero .wrap{ grid-template-columns:1fr; }
-    .hero-seal-wrap{ order:-1; }
+    .hero .wrap{ grid-template-columns:1fr; gap:36px; }
+    .hero-seal-wrap{ order:-1; margin-bottom:8px; }
     .stat-row{ grid-template-columns:repeat(2,1fr); row-gap:20px; }
     .product-grid{ grid-template-columns:repeat(2,1fr); }
     .member-grid, .split-grid, .location-grid{ grid-template-columns:1fr; gap:40px; }
@@ -417,6 +417,34 @@
     .service-grid, .community-grid{ grid-template-columns:1fr; }
     .footer-top{ grid-template-columns:1fr; }
     .stat-row{ grid-template-columns:1fr 1fr; }
+
+    .wrap{ padding:0 20px; }
+    section{ padding:52px 0; }
+    .hero{ padding:36px 0 48px; }
+    .hero .wrap{ gap:32px; }
+    .hero-sub{ margin-top:16px; }
+    .hero-actions{ margin-top:24px; }
+    .stat-row{ margin-top:32px; padding-top:18px; row-gap:16px; }
+    .hero-seal-wrap{ margin-bottom:34px; }
+
+    .section-head{ margin-bottom:28px; gap:16px; }
+    .section-head h2{ margin-top:8px; }
+
+    .facade-banner{ margin-bottom:28px; }
+    .member-grid, .split-grid, .location-grid{ gap:28px; }
+    .member-card{ padding:24px; }
+    .product-grid, .service-grid, .community-grid{ gap:14px; }
+    .product-card{ padding:16px; }
+    .review-summary{ gap:12px; margin-bottom:28px; }
+    .review-card{ min-width:230px; max-width:230px; padding:18px; }
+    .benefit-list{ gap:16px; margin-top:20px; }
+
+    .site-footer{ padding-top:48px; }
+    .footer-top{ gap:28px; padding-bottom:32px; }
+    .footer-bottom{ padding:16px 0; }
+
+    .photo-snap{ width:120px; }
+    .photo-snap img{ height:110px; }
   }
 </style>
 </head>
